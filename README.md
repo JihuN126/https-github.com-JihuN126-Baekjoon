@@ -1,6 +1,6 @@
 # 🧠 Baekjoon Online Judge Solutions
 
-[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=JihuN126)](https://solved.ac/JihuN126)
+[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=JihuN126)](https://solved.ac/youk6767)
 ![Language](https://img.shields.io/badge/language-Java%20%7C%20Python%20%7C%20C++-blue)
 ![Problems](https://img.shields.io/github/directory-file-count/JihuN126/https-github.com-JihuN126-Baekjoon/Baekjoon?type=file)
 ![GitHub last commit](https://img.shields.io/github/last-commit/JihuN126/https-github.com-JihuN126-Baekjoon)
