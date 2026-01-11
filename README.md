@@ -1,7 +1,7 @@
 # 🧠 Baekjoon Online Judge Solutions
 
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=youk6767)](https://solved.ac/youk6767)
-![Language](https://img.shields.io/badge/language-Java)
+![Language](https://img.shields.io/badge/language-Java%20%7C%20)
 ![Problems](https://img.shields.io/github/directory-file-count/JihuN126/https-github.com-JihuN126-Baekjoon/Baekjoon?type=file)
 
 ---
