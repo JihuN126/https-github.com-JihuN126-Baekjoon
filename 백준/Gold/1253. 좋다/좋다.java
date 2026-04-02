@@ -8,7 +8,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         int answer = 0;
-        long[] arr = new long[N];
+        int[] arr = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
         for(int i=0;i<N;i++) {
             arr[i] = Integer.parseInt(st.nextToken());
@@ -16,7 +16,7 @@ public class Main {
         Arrays.sort(arr);
         for(int i=0;i<N;i++) {
             int p1=0, p2=N-1;
-            long target = arr[i];
+            int target = arr[i];
             while(p1<p2) {
                 if(arr[p1] + arr[p2] > target) {
                     p2--;
