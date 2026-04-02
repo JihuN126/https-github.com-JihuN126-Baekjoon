@@ -1,53 +1,53 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
-    static class Node{
-        int V;
-        int Cost;
-        public Node(int V, int Cost) {
-            this.V = V;
-            this.Cost = Cost;
+    static int[] dist;
+    static ArrayList<Node>[] graph;
+    static class Node {
+        int end, weight;
+        public Node(int end, int weight) {
+            this.end = end;
+            this.weight = weight;
         }
     }
-    static ArrayList<Node>[] Graph;
-    static int[] Dist;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int V = Integer.parseInt(st.nextToken());
         int E = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(br.readLine());
-        Graph = new ArrayList[V + 1];
-        Dist = new int[V + 1];
-        for (int i = 1; i <= V; i++) {
-            Graph[i] = new ArrayList<>();
-            Dist[i] = Integer.MAX_VALUE;
+        int Start = Integer.parseInt(br.readLine());
+        graph = new ArrayList[V+1];
+        dist = new int[V+1];
+        for(int i=1;i<=V;i++) {
+            graph[i] = new ArrayList<>();
+            dist[i] = Integer.MAX_VALUE;
         }
-        for (int i = 0; i < E; i++) {
+        for(int i=0;i<E;i++) {
             st = new StringTokenizer(br.readLine());
-            int UofV = Integer.parseInt(st.nextToken());
-            int VofV = Integer.parseInt(st.nextToken());
-            int WofV = Integer.parseInt(st.nextToken());
-            Graph[UofV].add(new Node(VofV, WofV));
+            int u = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
+            int w = Integer.parseInt(st.nextToken());
+            graph[u].add(new Node(v,w));
         }
-        Dijkstra(K);
-        for (int i = 1; i <= V; i++) System.out.println(Dist[i] == Integer.MAX_VALUE ? "INF" : Dist[i]);
+        Dijkstra(Start);
+        for(int i=1;i<=V;i++) {
+            System.out.println(dist[i] == Integer.MAX_VALUE ? "INF" : dist[i]);
+        }
     }
-    static void Dijkstra(int start) {
-        PriorityQueue<Node> q = new PriorityQueue<>((o1, o2) -> o1.Cost - o2.Cost);
-        q.add(new Node(start, 0));
-        Dist[start] = 0;
-        while (!q.isEmpty()) {
-            Node Now = q.poll();
-            for(int i=0;i<Graph[Now.V].size();i++){
-                Node Next = Graph[Now.V].get(i);
-                if(Dist[Next.V] > Now.Cost + Next.Cost){
-                    Dist[Next.V] = Now.Cost + Next.Cost;
-                    q.add(new Node(Next.V, Dist[Next.V]));
+    public static void Dijkstra(int start) {
+        PriorityQueue<Node> que = new PriorityQueue<>(((o1, o2) -> o1.weight-o2.weight));
+        que.add(new Node(start,0));
+        dist[start]=0;
+        while(!que.isEmpty()) {
+            Node cur = que.poll();
+            int end = cur.end;
+            int weight = cur.weight;
+            for(Node temp : graph[end]) {
+                if(dist[temp.end] > weight + temp.weight) {
+                    dist[temp.end] = weight + temp.weight;
+                    que.add(new Node(temp.end, dist[temp.end]));
                 }
             }
         }
