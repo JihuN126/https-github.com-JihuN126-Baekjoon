@@ -1,42 +1,38 @@
 import java.util.*;
 class Solution {
-    public boolean visited[];
+    ArrayList<Integer>[] graph;
+    boolean[] visited;
     public int solution(int n, int[][] computers) {
-        ArrayList<Integer>[] list = new ArrayList[n+1];
+        int answer = 0;
+        graph = new ArrayList[n+1];
         visited = new boolean[n+1];
-        int count = 0;
         for(int i=1;i<=n;i++) {
-            list[i] = new ArrayList<>();
+            graph[i] = new ArrayList<>();
         }
-        for(int i=0;i<n;i++) {
-            for(int j=0;j<n;j++) {
+        for(int i=0;i<computers.length;i++) {
+            for(int j=0;j<computers[i].length;j++) {
                 if(i==j) continue;
                 if(computers[i][j]==1) {
-                    list[i+1].add(j+1);
+                    graph[i+1].add(j+1);
                 }
             }
         }
         for(int i=1;i<=n;i++) {
             if(!visited[i]) {
-                count++;
-                BFS(i, list);
+                DFS(i);
+                answer++;
             }
         }
-        
-        return count;
+        return answer;
     }
-    public void BFS(int start, ArrayList<Integer>[] list) {
-        Queue<Integer> que = new LinkedList<>();
-        que.add(start);
+    public void DFS(int start) {
         visited[start] = true;
-        while(!que.isEmpty()) {
-            int now = que.poll();
-            for(int i : list[now]) {
-                if(!visited[i]){
-                    visited[i] = true;
-                    que.add(i);
-                }
+        for(int next : graph[start]) {
+            if(!visited[next]) {
+                DFS(next);
+                visited[next] = true;
             }
         }
+        return;
     }
 }
